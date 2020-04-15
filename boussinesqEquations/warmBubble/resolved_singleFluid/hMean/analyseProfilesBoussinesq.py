@@ -287,11 +287,8 @@ def plot_all_profiles(id, time, z0, fields, fieldsExpected, folder=sys.path[0], 
 
     
 def main():
-    #Command line arguments
     time = readConsole("-time", sys.argv, default=1000)
     expectedProfilesPath = readConsole("-expectedProfiles", sys.argv, default="./")
-    plotType = readConsole("-plotType", sys.argv, default="standard")
-    
     folderBase = os.path.dirname(os.path.realpath(__file__))
     
     #Cell-centred co-ordinates for z axis in range [0, 10]km with 100m grid spacing.
@@ -306,12 +303,8 @@ def main():
     
     folderExpected = os.path.join(folderBase, expectedProfilesPath)
     fieldsExpected = allFields(zOneColumn, folder=folderExpected)
-    if expectedProfilesPath == "./":
-        fieldsExpected = fields
-    
-    if plotType == "standard":
-        plot_all_profiles(plotType, time, zOneColumn, fields, fieldsExpected, folder=folderBase, plotExpected=True)
-    elif plotType == "filled":
-        plot_all_profiles(plotType, time, zOneColumn, fields, fieldsExpected, folder=folderBase, plotExpected=True, fillSigma=True, showTitle=True)
+
+    plot_all_profiles("standard", time, zOneColumn, fields, fieldsExpected, folder=folderBase, plotExpected=True)
+    plot_all_profiles("filled", time, zOneColumn, fields, fieldsExpected, folder=folderBase, plotExpected=True, fillSigma=True, showTitle=True)
 
 main()

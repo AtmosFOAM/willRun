@@ -65,6 +65,8 @@ class field:
                         data.append(data_row)
                     
             #Flip dimensions of data array so that 1 row of "data" is a single variable
+            if len(data) == 0:
+                return np.zeros((length[0],length[1]))
             data_temp = np.array(data)
             data = np.zeros((len(data_temp[0]),len(data_temp)))
             for i in xrange(len(data)):

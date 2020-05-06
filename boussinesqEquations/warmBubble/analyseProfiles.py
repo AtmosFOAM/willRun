@@ -8,10 +8,11 @@ import os,sys
 execfile( os.path.join( sys.path[0], "dependencies.py" ) )
 execfile( os.path.join( sys.path[0], "fieldClass.py" ) )
 execfile( os.path.join( sys.path[0], "d_plots.py" ) )
+execfile( os.path.join( sys.path[0], "d_plots_buoyancy.py" ) )
 # execfile( os.path.join( sys.path[0], "d_plots_resolution.py" ) )
 
 times = np.array([500, 1000])
-times = np.array([1000])
+# times = np.array([1000])
 
 resolutions = np.array([ 100, 200, 400, 1000, 2000, 4000, 6666, 20000, 50000, 100000, 200000 ])
 resolutions = np.array([ 100, 200, 400, 1000, 2000, 4000, 6666, 20000 ])
@@ -22,19 +23,23 @@ error_norm = np.zeros(len(resolutions))
 
 simulations = []
 simulations.append( ["1Fluid", "k"] )
-simulations.append( ["2Fluid", "r"] )
+# simulations.append( ["2Fluid", "b"] )
+# simulations.append( ["2Fluid_divUiFromMean", "b"] )
+simulations.append( ["2Fluid_temp", "b"] )
+# simulations.append( ["2Fluid_wTransfer", "r"] )
 # simulations.append( ["xyzData", "Test", "m"] )
 
-folderProfiles = os.path.join(sys.path[0], "zplots_profiles")
+folderProfiles = os.path.join(sys.path[0], "plots")
 
 zOneColumn = np.arange(-50.,10150.,100.)
 zOneColumn[0] = 0.
 zOneColumn[-1] = 10000.
 zfOneColumn = np.arange(0.,10100.,100.)
 
-# rms_error_theta(zOneColumn, resolutions, simulations, 500)
+rms_error_theta(zOneColumn, resolutions, simulations, 500)
 rms_error_theta(zOneColumn, resolutions, simulations, 1000)
-# rms_error_ztheta(zOneColumn, dx, simulations)
+rms_error_ztheta(zOneColumn, resolutions, simulations, 500)
+rms_error_ztheta(zOneColumn, resolutions, simulations, 1000)
 # heat_transport_error_theta(zOneColumn, dx, simulations)
 
 for time in times:
@@ -52,7 +57,7 @@ for time in times:
     
     for simulation in simulations:
         print simulation[0]
-        simulationData = []
+        listFields = []
         
         for resolution in resolutions:
             nColumns = int(round( domainWidth/float(resolution) ))
@@ -75,17 +80,17 @@ for time in times:
                 folder = os.path.join(folder, "{}".format(time))
             
             fields = allFields(zOneColumn, folder=folder)
-            simulationData.append(fields)
+            listFields.append(fields)
             
             
-            # if resolution == 20000:
-                # plot_all_profiles("filled", time, zOneColumn, fields, fieldsExpected, folder=folderProfiles, plotExpected=True, fillSigma=True, showTitle=True)
+            if resolution != 20001:
+                id = "{}_{}col".format(simulation[0], nColumns)
+                plot_all_profiles(id, time, zOneColumn, fields, fieldsExpected, folder=folderProfiles, plotExpected=True, fillSigma=True, showTitle=True)
             
-    # plot_sigma_resolution(zOneColumn, sigma, expected.sigma[1], dx, simulations[sim][0], folder=folder_sigma)
-    # plot_thetaMean_resolution(zOneColumn, thetaMean, thetaMean1fluid, expected.thetaMean, dx, simulations[sim][0], folder=folder_thetaMean, col_type=folders[j])
-    # plot_theta_resolution(zOneColumn, theta, thetaVar, expected.theta, expected.thetaVar, dx, simulations[sim][0], folder=folder_thetas)
-    # plot_w_resolution(zOneColumn, w, wVar, expected.w, expected.wVar, dx, simulations[sim][0], folder=folder_velocities)
-    # plot_dExnerdz_resolution(zOneColumn, zf_oneColumn, dExnerdz, expected.dExnerdz, dx, simulations[sim][0], folder=folder_exner)
+        if simulation[0] == "1Fluid":
+            listFieldsOneFluid = listFields
+        
+        plot_buoyancy(simulation[0], time, zOneColumn, resolutions, listFields, listFieldsOneFluid, fieldsExpected, folder=folderProfiles)
         
 
 # plot_all_profiles("00_expectedProfiles", zOneColumn, expected, expected, expected=False)

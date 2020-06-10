@@ -17,19 +17,19 @@ setInitialTracerField -name b -tracerDict setbDict -case $case
 
 # Solve Boussinesq equations (boussinesqFoam also writes out the initial
 # velocity plua a tiny increment for conditional averaging)
-boussinesqFoam -case $case >& log & sleep 0.01; tail -f log
+boussinesqFoam -case $case #>& log & sleep 0.01; tail -f log
 
 # Plot the final result
-time=1000
-writeuvw -time $time u -case $case
-gmtFoam -time $time bU -case $case
-gv $case/$time/bU.pdf &
-gmtFoam -time $time bP -case $case
-gv $case/$time/bP.pdf &
+#time=1000
+#writeuvw -time $time u -case $case
+#gmtFoam -time $time bU -case $case
+#gv $case/$time/bU.pdf &
+#gmtFoam -time $time bP -case $case
+#gv $case/$time/bP.pdf &
 
 # Conditional average various time steps
-rm -r $case/hMean/[0-9]*
-blockMesh -case $case/hMean
+#rm -r $case/hMean/[0-9]*
+#blockMesh -case $case/hMean
 for time in [0-9]*; do
     ./conditionalAverage.sh $case $time
 done

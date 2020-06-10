@@ -18,7 +18,7 @@ conditionalAverage -case $case -time $time uz 0 stable buoyant
 
 # Multiply fields by sigma (zero or one)
 for part in stable buoyant; do
-    for var in b uz P; do
+    for var in b u uz P; do
         multiplyFields -case $case $time sigma$var.$part $time $var \
              $time sigma.$part
     done
@@ -27,6 +27,7 @@ done
 # Horizontal averages
 
 for newCase in 1col 3col 5col 10col 20col 50col 100col 200col; do
+    blockMesh -case $case/conditionallyAveraged/$newCase
 
     # Map onto coarse mesh
     mapFields -case $case/conditionallyAveraged/$newCase -mapMethod \
@@ -37,7 +38,7 @@ for newCase in 1col 3col 5col 10col 20col 50col 100col 200col; do
 
     # Divide conditional average fields by sigma
     for part in stable buoyant; do
-        for var in b uz P; do
+        for var in b u uz P; do
             multiplyFields -case $case/conditionallyAveraged/$newCase $time \
                 $var.$part $time sigma$var.$part $time sigma.$part -pow1 -1
         done
@@ -45,7 +46,7 @@ for newCase in 1col 3col 5col 10col 20col 50col 100col 200col; do
 
     # Write out ascii data and sort by z
     for part in '' .stable .buoyant; do
-        for var in b uz P sigma sigmab sigmaP sigmauz; do
+        for var in b u uz P sigma sigmab sigmaP sigmauz; do
             if [ -a $case/conditionallyAveraged/$newCase/$time/$var$part ]; then
                 writeCellDataxyz -case $case/conditionallyAveraged/$newCase -time $time $var$part
                 sort -g -k 3 \

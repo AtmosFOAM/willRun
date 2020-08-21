@@ -15,7 +15,7 @@ sed -i 's/buoyancyf/bf.sum/g' 0/P
 
 # Solve multi-fluid Boussinesq equations
 #multiFluidBoussinesqFoam >& log & sleep 0.01; tail -f log
-multiFluidBoussinesqFoamWTransfer
+multiFluidBoussinesqFoamTransferAnalysis
 
 # Plots
 mv 0/P.buoyant 0/Pi.buoyant

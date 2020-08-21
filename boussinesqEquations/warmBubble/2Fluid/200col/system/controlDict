@@ -36,13 +36,13 @@ deltaT          2;
 
 writeControl    runTime;
 
-writeInterval   100;
+writeInterval   2;
 
 purgeWrite      0;
 
-writeFormat     binary;
+writeFormat     ascii;//binary;
 
-writePrecision  6;
+writePrecision  16;
 
 writeCompression uncompressed;
 

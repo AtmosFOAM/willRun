@@ -31,7 +31,7 @@ for part in stable buoyant; do
     fi
 
     #for var in b uz P Pi sigma massTransfer.buoyant massTransfer.stable massTransferredCloudRadius massTransferredDivTransfer massTransferredBuoyancyTransfer massTransferredDwDtTransfer massTransferredDwDtPdfTransfer1 massTransferredDwDtPdfTransfer2; do
-    for var in b uz P Pi sigma massTransfer.buoyant massTransfer.stable massTransferredDivTransfer massTransferredDwDt massTransferredDwDtTransfer massTransferredDwDtPdfTransfer1 massTransferredDwDtPdfTransfer2; do
+    for var in b uz P Pi sigma massTransfer.buoyant massTransfer.stable massTransferredDivTransfer massTransferredSigmaFlux massTransferredTimeDerivative massTransferredMaterialDerivative massTransferredPressureCorrection massTransferredPressureCorrection2 massTransferredPressureCorrection3 massTransferredPressureCorrection4 massTransferredPressureCorrection5; do
         if [ -e $case/$time/$var.$part ]; then
             writeCellDataxyz -case $case -time $time $var.$part
                 sort -g -k 3 $case/$time/$var.$part.xyz \

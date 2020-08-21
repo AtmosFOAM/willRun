@@ -10,6 +10,9 @@ blockMesh -case $case
 
 # Initial conditions from ../resolved_singleFluid with modifications
 cp -r ../../1Fluid/200col/conditionallyAveraged/200col/2 ./0
+#cp 0/b.buoyant 0/b.stable
+cp 0/b 0/b.stable
+cp 0/b 0/b.buoyant
 cp 0/u 0/u.stable
 cp 0/u 0/u.buoyant
 sed -i 's/buoyancyf/bf.sum/g' 0/P

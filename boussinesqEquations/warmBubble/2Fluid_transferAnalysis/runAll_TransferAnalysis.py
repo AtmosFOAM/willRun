@@ -12,6 +12,7 @@ resolutions = ["5col", "3col", "1col"]
 #resolutions = ["5col", "3col"]
 resolutions = ["1col"]
 times = range(2,504,2)
+times = range(350,504,2)
 
 for resolution in resolutions:
     

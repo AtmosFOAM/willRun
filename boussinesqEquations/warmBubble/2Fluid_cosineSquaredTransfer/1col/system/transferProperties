@@ -37,7 +37,7 @@ gradSigmaTransfer  false;
 wTransfer false;
 wTransferTimeScale wTransferTimeScale [0 0 1 0 0] 10;
 transferAnomaliesMeanFactor false;
-bAnomalyMeanCoeff 0;
+bAnomalyMeanCoeff 0.1;
 
 buoyancyTransfer false;
 bTransferDiffusivity bTransferDiffusivity [0 2 -1 0 0] 0;

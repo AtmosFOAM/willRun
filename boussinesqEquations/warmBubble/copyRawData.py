@@ -10,11 +10,13 @@ if not os.path.exists( baseFolderRaw ):
 
 testCases = ["1Fluid", "2Fluid", "2Fluid_temp", "2Fluid_wTransfer"]
 testCases = ["2Fluid_temp"]
-testCases = ["2Fluid_wTransfer"]
+testCases = ["2Fluid_cosineSquaredTransfer"]
 testCases = ["2Fluid"]
 
 resolutions = ["200col", "100col", "50col", "20col", "10col", "5col", "3col", "1col"]
+#resolutions = ["5col", "3col", "1col"]
 resolutions = ["200col"]
+
 times = ["500", "1000"]
 times = ["0", "100", "200", "300", "400", "500", "600", "700", "800", "900", "1000"]
 
@@ -51,4 +53,5 @@ for testCase in testCases:
                 
                 os.system("cp {}/*.xyz {}/".format(folder, folderRaw))
     
-    os.system("cp -r {}/ $DROPBOX/".format( os.path.join(baseFolderRaw, testCase) ))
+    #os.system("cp -r {}/ $DROPBOX/".format( os.path.join(baseFolderRaw, testCase) ))
+    os.system("cp -r {}/ /mnt/f/Desktop/".format( os.path.join(baseFolderRaw, testCase) ))

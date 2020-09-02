@@ -40,9 +40,9 @@ writeInterval   100;
 
 purgeWrite      0;
 
-writeFormat     ascii;//binary;
+writeFormat     binary;
 
-writePrecision  16;
+writePrecision  6;
 
 writeCompression uncompressed;
 

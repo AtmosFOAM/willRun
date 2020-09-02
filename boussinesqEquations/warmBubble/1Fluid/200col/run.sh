@@ -30,7 +30,7 @@ boussinesqFoam -case $case #>& log & sleep 0.01; tail -f log
 # Conditional average various time steps
 #rm -r $case/hMean/[0-9]*
 #blockMesh -case $case/hMean
-for time in [0-9]*; do
+for time in [1-9]*; do
     ./conditionalAverage.sh $case $time
 done
 

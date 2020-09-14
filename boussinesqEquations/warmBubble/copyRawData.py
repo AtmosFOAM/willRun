@@ -12,10 +12,12 @@ testCases = ["1Fluid", "2Fluid", "2Fluid_temp", "2Fluid_wTransfer"]
 testCases = ["2Fluid_temp"]
 testCases = ["2Fluid_cosineSquaredTransfer"]
 testCases = ["2Fluid_cosineSquaredTransfer_divTransfer"]
+testCases = ["2Fluid_stabilityAnalysis"]
 #testCases = ["2Fluid"]
 
 resolutions = ["200col", "100col", "50col", "20col", "10col", "5col", "3col", "1col"]
-#resolutions = ["5col", "3col", "1col"]
+resolutions = ["5col", "3col", "1col"]
+#resolutions = ["1col"]
 #resolutions = ["200col"]
 
 times = ["500", "1000"]

@@ -1,9 +1,13 @@
+import os,sys
 import numpy as np
+import matplotlib
+#Needed for some unix environments
+if os.environ.get("DISPLAY", "") == "":
+    matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 import matplotlib.tri as tri
 import matplotlib.transforms as tr
-import os,sys
 
 folderMain = os.path.dirname(os.path.realpath(__file__))
 folderSrc = os.path.join(folderMain, "src")
@@ -20,11 +24,11 @@ times = np.array([500, 1000])
 # times = np.array([1000])
 
 resolutions = np.array([ 100, 200, 400, 1000, 2000, 4000, 6666, 20000])
-resolutions = np.array([ 20000 ])
+resolutions = np.array([ 4000, 6666, 20000 ])
 
 simulations = []
 simulations.append( ["1Fluid", "k"] )
-testCases.append( ["2Fluid_DEFAULT", "r"] )
+simulations.append( ["2Fluid_DEFAULT", "r"] )
 # simulations.append( ["2Fluid_gammaZero", "r"] )
 # simulations.append( ["2Fluid_gammaZero_noTransfer", "r"] )
 # simulations.append( ["2Fluid_noTransfer", "r"] )
@@ -61,7 +65,7 @@ for time in times:
     
     
     for simulation in simulations:
-        print simulation[0]
+        print "Plotting {} at t={}s".format(simulation[0], time)
         listFields = []
         
         for resolution in resolutions:

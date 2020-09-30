@@ -34,7 +34,7 @@ testCases.append("2Fluid_DEFAULT")
 # testCases.append("2Fluid_wMeanCellTransfer")
 
 resolutions = ["200col", "100col", "50col", "20col", "10col", "5col", "3col", "1col"]
-#resolutions = ["5col", "3col", "1col"]
+resolutions = ["5col", "3col", "1col"]
 
 times = ["500", "1000"]
 #times = ["0", "100", "200", "300", "400", "500", "600", "700", "800", "900", "1000"]

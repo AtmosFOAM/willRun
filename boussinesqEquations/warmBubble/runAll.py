@@ -18,7 +18,7 @@ testCases.append("2Fluid_DEFAULT")
 # testCases.append("2Fluid_wMeanCellTransfer")
 
 resolutions = ["200col", "100col", "50col", "20col", "10col", "5col", "3col", "1col"]
-#resolutions = ["5col", "3col", "1col"]
+resolutions = ["5col", "3col", "1col"]
 
 for testCase in testCases:
     for resolution in resolutions:

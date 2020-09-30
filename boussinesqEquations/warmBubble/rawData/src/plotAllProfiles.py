@@ -25,8 +25,8 @@ def plot_all_profiles(id, time, z0, fields, fieldsExpected, folder=sys.path[0], 
     z = 0.001*z0
     
     ax = []
-    plt.figure(figsize=(8,4.5))
-    gs = gridspec.GridSpec(1, 4, height_ratios=[1, 1])
+    plt.figure(figsize=(8,2.5))
+    gs = gridspec.GridSpec(1, 4, height_ratios=[1])
     
     ##############################
     # Plot sigma                 #

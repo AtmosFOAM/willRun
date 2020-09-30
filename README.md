@@ -6,7 +6,8 @@ Test cases for the AtmosFOAM-multiFluid Boussinesq model.
 * Install [AtmosFOAM-tools](https://github.com/AtmosFOAM/AtmosFOAM-tools/).
 * Install [AtmosFOAM](https://github.com/AtmosFOAM/AtmosFOAM/).
 * Install [AtmosFOAM-multiFluid](https://github.com/AtmosFOAM/AtmosFOAM-multiFluid/).
-* If you need to run 2-fluid Boussinesq simulations, you must firstly run the 200 column single-fluid test case at [boussinesqEquations/warmBubble/1Fluid/200col/](boussinesqEquations/warmBubble/1Fluid/200col/). This will conditionally average the data for each resolution for each timestep (which usually takes at least 10 hours). 
+* If you need to run 2-fluid Boussinesq simulations, you must firstly run the 200 column single-fluid test case at [boussinesqEquations/warmBubble/1Fluid/200col/](boussinesqEquations/warmBubble/1Fluid/200col/). This will conditionally average the data for each resolution for each timestep (which usually takes at least 10 hours). If you do not intend to use the transfer analysis and do not intend to compare the 2-fluid results with the 1-fluid results, you can stop the conditional averaging after the first timestep.
+* The other single fluid test cases (different resolutions) should be run if you intend to plot the performance of the single-fluid scheme.
 
 ## Running and analysing 2-fluid test cases
 * Test cases are located in [boussinesqEquations/warmBubble/](boussinesqEquations/warmBubble/).

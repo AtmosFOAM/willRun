@@ -1,29 +1,43 @@
 import os,sys
 
-baseFolder = sys.path[0]
+'''
+Script which copies all .xyz files from test cases
+into an identical directory structure within the 
+"./rawData/" folder.
+This makes it easier (more lightweight) to export
+the data elsewhere.
+
+Must run runAll.py (with same test cases) 
+before running this script.
+'''
+
+#Folder of this script and rawData folder
+baseFolder = os.path.dirname(os.path.realpath(__file__))
 baseFolderRaw = os.path.join(baseFolder, "rawData")
 
 if not os.path.exists( baseFolderRaw ):
     os.makedirs( baseFolderRaw )
 
+#Folder to which files are exported after
+exportData = False
+folderExport = "/mnt/f/Desktop/"
 
-
-testCases = ["1Fluid", "2Fluid", "2Fluid_temp", "2Fluid_wTransfer"]
-testCases = ["2Fluid_temp"]
-testCases = ["2Fluid_cosineSquaredTransfer"]
-testCases = ["2Fluid_cosineSquaredTransfer_divTransfer"]
-testCases = ["2Fluid_stabilityAnalysis"]
-testCases = ["2Fluid_oneD"]
-#testCases = ["2Fluid"]
+testCases = []
+testCases.append("1Fluid")
+testCases.append("2Fluid_DEFAULT")
+# testCases.append("2Fluid_gammaZero")
+# testCases.append("2Fluid_gammaZero_noTransfer")
+# testCases.append("2Fluid_noTransfer")
+# testCases.append("2Fluid_gaussianTransfer")
+# testCases.append("2Fluid_cosineSquaredTransfer")
+# testCases.append("2Fluid_wMeanTransfer")
+# testCases.append("2Fluid_wMeanCellTransfer")
 
 resolutions = ["200col", "100col", "50col", "20col", "10col", "5col", "3col", "1col"]
-resolutions = ["5col", "3col", "1col"]
-resolutions = ["1col"]
-#resolutions = ["200col"]
+#resolutions = ["5col", "3col", "1col"]
 
 times = ["500", "1000"]
-times = ["0", "100", "200", "300", "400", "500", "600", "700", "800", "900", "1000"]
-times = range(0,5100,100)
+#times = ["0", "100", "200", "300", "400", "500", "600", "700", "800", "900", "1000"]
 
 for testCase in testCases:
     for resolution in resolutions:
@@ -58,5 +72,5 @@ for testCase in testCases:
                 
                 os.system("cp {}/*.xyz {}/".format(folder, folderRaw))
     
-    #os.system("cp -r {}/ $DROPBOX/".format( os.path.join(baseFolderRaw, testCase) ))
-    os.system("cp -r {}/ /mnt/f/Desktop/".format( os.path.join(baseFolderRaw, testCase) ))
+    if exportData:
+        os.system("cp -r {}/ {}".format(os.path.join(baseFolderRaw, testCase), folderExport))

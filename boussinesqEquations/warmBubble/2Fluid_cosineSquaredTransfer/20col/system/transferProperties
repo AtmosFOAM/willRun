@@ -31,13 +31,14 @@ minSigma  1e-9;
 // Transfer between partitions based on horizontal divergence
 divTransfer 0;
 noAnomalies false;
-DwDtTransfer  false;
+gaussianTransfer  false;
 cosineSquaredTransfer  true;
 gradSigmaTransfer  false;
+wTransferType  transferPdf;
 wTransfer false;
 wTransferTimeScale wTransferTimeScale [0 0 1 0 0] 10;
 transferAnomaliesMeanFactor false;
-bAnomalyMeanCoeff 0.1;
+bAnomalyMeanCoeff 0;
 
 buoyancyTransfer false;
 bTransferDiffusivity bTransferDiffusivity [0 2 -1 0 0] 0;

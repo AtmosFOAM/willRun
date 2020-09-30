@@ -65,7 +65,8 @@ for testCase in testCases:
             
             if os.path.exists( folderRaw ):
                 os.system("rm {}/*.xyz".format(folderRaw))
-            
+
+            print "Attempting to copy {}".format(folder)
             if os.path.exists(folder):
                 if not os.path.exists( folderRaw ):
                     os.makedirs( folderRaw )
